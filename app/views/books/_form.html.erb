@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@book) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :isbn %>
+    <%= f.input :date_of_publication %>
+    <%= f.input :review %>
+    <%= f.input :price %>
+    <%= f.association :author %>
+    <%= f.association :publisher %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
