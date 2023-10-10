@@ -26,12 +26,12 @@
 
   <p>
     <strong>Author:</strong>
-    <%= book.author_id %>
+    <%= "#{book.author.first_name} #{book.author.last_name}" %>
   </p>
 
   <p>
     <strong>Publisher:</strong>
-    <%= book.publisher_id %>
+    <%= book.publisher.name %>
   </p>
 
 </div>
