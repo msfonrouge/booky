@@ -11,7 +11,7 @@
 User.create(email: 'user@example.com', password: '123456')
 
 
-10.times do
+20.times do
   author = Author.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -30,3 +30,5 @@ User.create(email: 'user@example.com', password: '123456')
     publisher: publisher
   )
 end
+
+Author.create()

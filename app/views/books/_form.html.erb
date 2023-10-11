@@ -1,19 +1,24 @@
+<div class="pt-4">
+  <%= simple_form_for(@book, html: { class: "row" }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@book) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <%= f.input :title, class: "col", required: true %>
+      <%= f.input :isbn, class: "col", required: true %>
+      <%= f.input :date_of_publication, required: true %>
+      <%= f.input :review %>
+      <%= f.input :price, include_blank: "0" %>
+      <%= f.association :author, label_method: :full_name, collection: Author.order(:last_name, :first_name), include_blank: "Select an Author" %>
+      <%= f.association :publisher, collection: Publisher.order(:name), include_blank: "Select a Publisher" %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :isbn %>
-    <%= f.input :date_of_publication %>
-    <%= f.input :review %>
-    <%= f.input :price %>
-    <%= f.association :author %>
-    <%= f.association :publisher %>
-  </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-actions d-flex justify-content-between">
+      <%= f.button :submit, class: "btn btn-primary" %>
+      <% if !current_page?('/books/new') %>
+        <%= button_to "Delete this book", @book, method: :delete, class: "btn btn-danger text-white" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
