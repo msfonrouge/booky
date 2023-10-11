@@ -1,19 +1,24 @@
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-end">
 <h1>Books</h1>
- <%= link_to "New book", new_book_path %>
+ <%= link_to new_book_path, class: "text-nowrap text-decoration-none" do%>
+      <i class="fa-solid fa-plus"></i> New book
+      <% end %>
 </div>
 
-<table class="table">
+<div class="table-responsive">
+<table class="table table-hover align-middle">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
-      <th scope="col">Isbn</th>
+      <th scope="col">ISBN</th>
       <th scope="col">Date of publication</th>
       <th scope="col">Review</th>
       <th scope="col">Price</th>
       <th scope="col">Author</th>
       <th scope="col">Publisher</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -21,15 +26,23 @@
     <tr>
       <th scope="row"><%= book.id %></th>
       <td><%= book.title %></td>
-      <td><%= book.isbn %></td>
+      <td class="text-nowrap"><%= book.isbn %></td>
       <td><%= book.date_of_publication %></td>
       <td><%= book.review %></td>
       <td><%= book.price %></td>
       <td><%= "#{book.author.first_name} #{book.author.last_name}" %></td>
       <td><%= book.publisher.name %></td>
-      <td><%= link_to "Edit this book", edit_book_path(book) %></td>
-      <td><%= link_to "Delete this book", book, method: :delete %></td>
+      <td><%= link_to edit_book_path(book), class: "text-warning text-nowrap text-decoration-none" do%>
+      Edit <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      </td>
+      <td>
+  <%= link_to book, class: "text-danger text-nowrap text-decoration-none", method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' } do %>
+    Delete <i class="far fa-trash-alt"></i>
+  <% end %>
+</td>
     </tr>
   </tbody>
   <% end %>
 </table>
+</div>
