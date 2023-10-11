@@ -1,10 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<div id="<%= dom_id @book %>">
+  <p>
+    <strong>Title:</strong>
+    <%= @book.title %>
+  </p>
 
-<%= render @book %>
+  <p>
+    <strong>Isbn:</strong>
+    <%= @book.isbn %>
+  </p>
 
+  <p>
+    <strong>Date of publication:</strong>
+    <%= @book.date_of_publication %>
+  </p>
+
+  <p>
+    <strong>Review:</strong>
+    <%= @book.review %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @book.price %>
+  </p>
+
+  <p>
+    <strong>Author:</strong>
+    <%= "#{@book.author.first_name} #{@book.author.last_name}" %>
+  </p>
+  <p>
+    <strong>Publisher:</strong>
+    <%= @book.publisher.name %>
+  </p>
+</div>
 <div>
   <%= link_to "Edit this book", edit_book_path(@book) %> |
   <%= link_to "Back to books", books_path %>
-
   <%= button_to "Destroy this book", @book, method: :delete %>
 </div>
