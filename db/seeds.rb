@@ -15,7 +15,7 @@ User.create(email: 'user@example.com', password: '123456')
   author = Author.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    date_of_birth: Faker::Date.between(from: 50.year.ago, to: 1.year.ago),
+    date_of_birth: Faker::Date.between(from: 100.year.ago, to: 20.year.ago),
     about: Faker::Lorem.sentence,
     nationality: Faker::Address.country
   )

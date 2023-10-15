@@ -5,4 +5,8 @@ class Author < ApplicationRecord
     "#{last_name} #{first_name}"
   end
 
+  def age
+    Date.today.year - date_of_birth.year
+  end
+
 end

@@ -30,7 +30,7 @@
       <td><%= book.date_of_publication %></td>
       <td><%= book.review %></td>
       <td><%= book.price %></td>
-      <td><%= "#{book.author.first_name} #{book.author.last_name}" %></td>
+      <td><%= "#{book.author.first_name} #{book.author.last_name}" %><br><%= "(#{book.author.age})" %></td>
       <td><%= book.publisher.name %></td>
       <td><%= link_to edit_book_path(book), class: "text-warning text-nowrap text-decoration-none" do%>
       Edit <i class="fas fa-pencil-alt"></i>
