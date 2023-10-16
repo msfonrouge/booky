@@ -5,6 +5,24 @@
       <% end %>
 </div>
 
+
+<div class="flex justify-end mb-1">
+    <%= form_with url: books_path, method: :get do |form| %>
+      <%= form.text_field :title, placeholder: "Search by title", value: params[:name], class: "border border-blue-500 rounded p-2" %>
+      <%= form.button "Search", class: "bg-blue-500 text-white p-2 rounded-sm" %>
+    <% end %>
+  </div>
+
+
+
+<%= form_with(url: books_path, method: :get, class: "mb-4", data: { controller: "book-filters", "book-filters-target": "form" } ) do |f| %>
+    <%= f.select :date_of_publication, options_for_select((1960..Date.today.year).to_a, params[:date_of_publication]), { include_blank: "Year" }, data: { action: "change->book-filters#submitForm" }  %>
+<% end %>
+<%= link_to "Reset", books_path, class: "text-nowrap text-decoration-none" %>
+
+
+
+
 <div class="table-responsive">
 <table class="table table-hover align-middle">
   <thead>

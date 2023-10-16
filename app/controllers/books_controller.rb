@@ -4,6 +4,18 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @books = Book.all
+    # Filter by publication year
+    if params[:date_of_publication].present?
+      year = params[:date_of_publication].to_i
+      start_date = Date.new(year, 1, 1)
+      end_date = Date.new(year, 12, 31)
+      @books = @books.where(date_of_publication: start_date..end_date)
+    end
+
+    #@books = Books.includes(:team)
+    @books = players.where('name ilike ?', "%#{params[:name]}%") if params[:name].present?
+    #@books = players.order("#{params[:column]} #{params[:direction]}")
+    #render(partial: 'books', locals: { books: name })
   end
 
   # GET /books/1 or /books/1.json

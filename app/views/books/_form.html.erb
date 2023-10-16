@@ -6,7 +6,7 @@
     <div class="form-inputs">
       <%= f.input :title, class: "col", required: true %>
       <%= f.input :isbn, class: "col", required: true %>
-      <%= f.input :date_of_publication, required: true, as: :date, input_html: { class: "date_of_publication", data: { controller: "date_of_publication" } }  %>
+      <%= f.input :date_of_publication, required: true, as: :string, input_html: { data: { controller: "flatpickr" } }  %>
       <%= f.input :review %>
       <%= f.input :price %>
       <%= f.association :author, label_method: :full_name, collection: Author.order(:last_name, :first_name), include_blank: "Select an Author" %>
