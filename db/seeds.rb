@@ -10,25 +10,28 @@
 
 User.create(email: 'user@example.com', password: '123456')
 
-
-100.times do
+70.times do
   author = Author.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
+    first_name: Faker::Name.unique.first_name,
+    last_name: Faker::Name.unique.last_name,
     date_of_birth: Faker::Date.between(from: 100.year.ago, to: 20.year.ago),
     about: Faker::Lorem.sentence,
     nationality: Faker::Address.country
   )
-  publisher = Publisher.create(name: Faker::Book.publisher)
-  book = Book.create(
-    title: Faker::Book.title,
-    isbn: Faker::Code.isbn,  # Generates a random ISBN
-    date_of_publication: Faker::Date.between(from: 50.year.ago, to: 1.year.ago),
-    review: Faker::Lorem.paragraph,
-    price: Faker::Number.decimal(l_digits: 2),
-    author: author,
-    publisher: publisher
-  )
 end
 
-Author.create()
+15.times do
+  publisher = Publisher.create(name: Faker::Book.publisher)
+end
+
+150.times do
+  book = Book.create(
+    title: Faker::Book.unique.title,
+    isbn: Faker::Code.unique.isbn,
+    date_of_publication: Faker::Date.between(from: '1960-01-01', to: Date.today),
+    review: Faker::Lorem.paragraph,
+    price: Faker::Number.decimal(l_digits: 2),
+    author: Author.find(rand(1..Author.count)),
+    publisher: Publisher.find(rand(1..Publisher.count))
+  )
+end

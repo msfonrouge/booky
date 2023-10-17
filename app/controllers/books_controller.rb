@@ -3,16 +3,13 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    #@books = Book.all
-    #@books = User.page(params[:page])
     @books = Book.page(params[:page])
+
     # Initialize session variables if they are not set
     session[:query] ||= nil
 
-
     # Retrieve filter and search parameters from the session
     session[:query] = params[:query] if params[:query].present?
-
 
     # Filter by publication year
     if params[:date_of_publication].present?
@@ -22,11 +19,10 @@ class BooksController < ApplicationController
       @books = @books.where(date_of_publication: start_date..end_date)
     end
 
-
     # Filter by publisher
      if params[:publisher].present?
         publisher = Publisher.find(params[:publisher])
-        @books = publisher.books
+        @books = publisher.books.page(params[:page])
       end
 
       # Filter by title
@@ -35,10 +31,6 @@ class BooksController < ApplicationController
     else
       session[:query] = nil
     end
-    #list
-    #initialize_search
-    #handle_search_name
-    #handle_filters
   end
 
   def clear
