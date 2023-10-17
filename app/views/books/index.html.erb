@@ -7,11 +7,16 @@
 
 
 <div class="flex justify-end mb-1">
-    <%= form_with url: books_path, method: :get do |form| %>
-      <%= form.text_field :title, placeholder: "Search by title", value: params[:name], class: "border border-blue-500 rounded p-2" %>
-      <%= form.button "Search", class: "bg-blue-500 text-white p-2 rounded-sm" %>
+    <%= form_with(url: books_path, method: :get) do |f| %>
+      <%= f.text_field :query, placeholder: "Search by title", value: params[:query], class: "border border-blue-500 rounded p-2" %>
+
+      <%= f.button "Search", value: "submit", class: "p-2" %>
     <% end %>
   </div>
+
+<%= form_with(url: books_path, method: :get, class: "mb-4", data: { controller: "book-filters", "book-filters-target": "form" } ) do |f| %>
+  <%= f.select :publisher, options_for_select(Publisher.pluck(:name, :id), params[:publisher]), { include_blank: "Publisher" }, data: { action: "change->book-filters#submitForm" } %>
+<% end %>
 
 
 

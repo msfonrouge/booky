@@ -5,16 +5,15 @@ export default class extends Controller {
 
   static targets = [ "form" ]
 
-  connect() {
-    console.log("test");
+  submitForm() {
+    this.formTarget.requestSubmit();
   }
 
-  submitForm() {
-    console.log("test2")
-    this.formTarget.requestSubmit();
-    //clearTimeout(this.timeout);
-    //this.timeout = setTimeout(() => {
-    //  this.formTarget.requestSubmit();
-    //}, 200);
+  // Real-time search implementation?
+  search() {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.formTarget.requestSubmit();
+    }, 600);
   }
 }
