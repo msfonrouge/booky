@@ -3,7 +3,9 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    #@books = Book.all
+    #@books = User.page(params[:page])
+    @books = Book.page(params[:page])
     # Initialize session variables if they are not set
     session[:query] ||= nil
 

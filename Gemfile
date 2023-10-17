@@ -80,3 +80,6 @@ end
 
 # Add Faker
 gem 'faker'
+
+# Add kaminari
+gem 'kaminari'
