@@ -6,25 +6,25 @@
 </div>
 
 
-<div class="flex justify-end mb-1">
-    <%= form_with(url: books_path, method: :get) do |f| %>
+<div class="d-flex my-3 align-items-center">
+    <%= form_with(url: books_path, method: :get, class: "") do |f| %>
       <%= f.text_field :query, placeholder: "Search by title", value: params[:query], class: "border border-blue-500 rounded p-2" %>
 
       <%= f.button "Search", value: "submit", class: "p-2" %>
     <% end %>
-  </div>
 
-<%= form_with(url: books_path, method: :get, class: "mb-4", data: { controller: "book-filters", "book-filters-target": "form" } ) do |f| %>
+<%= form_with(url: books_path, method: :get, class: "px-3", data: { controller: "book-filters", "book-filters-target": "form" } ) do |f| %>
   <%= f.select :publisher, options_for_select(Publisher.pluck(:name, :id), params[:publisher]), { include_blank: "Publisher" }, data: { action: "change->book-filters#submitForm" } %>
 <% end %>
 
 
 
-<%= form_with(url: books_path, method: :get, class: "mb-4", data: { controller: "book-filters", "book-filters-target": "form" } ) do |f| %>
+<%= form_with(url: books_path, method: :get, class: "pe-3", data: { controller: "book-filters", "book-filters-target": "form" } ) do |f| %>
     <%= f.select :date_of_publication, options_for_select((1960..Date.today.year).to_a, params[:date_of_publication]), { include_blank: "Year" }, data: { action: "change->book-filters#submitForm" }  %>
 <% end %>
-<%= link_to "Reset", books_path, class: "text-nowrap text-decoration-none" %>
+<%= link_to "Reset", clear_books_path, class: "text-nowrap text-decoration-none mb-1" %>
 
+  </div>
 
 
 
