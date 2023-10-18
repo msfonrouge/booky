@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'authors/index'
+  get 'authors/show'
+  get 'authors/edit'
+  get 'authors/new'
   resources :books  do
     collection do
       get :clear

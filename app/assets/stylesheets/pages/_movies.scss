@@ -1,0 +1,14 @@
+.title-link {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.2;
+    &:hover {
+        color: #000;
+        text-decoration: none;
+        opacity: 1;
+    }
+}
+
+.active {
+    opacity: 1;
+}
