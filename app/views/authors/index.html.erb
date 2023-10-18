@@ -1,2 +1,72 @@
-<h1>Authors#index</h1>
-<p>Find me in app/views/authors/index.html.erb</p>
+<div class="d-flex justify-content-between align-items-end">
+<div class="d-flex gap-3">
+<a href="/books" class="title-link"><h1>Books</h1></a>
+<a href="/authors" class="title-link active"><h1>Authors</h1></a>
+<a href="/publishers" class="title-link"><h1>Publishers</h1></a>
+</div>
+ <%= link_to new_author_path, class: "text-nowrap text-decoration-none" do%>
+      <i class="fa-solid fa-plus"></i> New author
+      <% end %>
+</div>
+
+
+<div class="d-flex my-5 align-items-center">
+    <%= form_with(url: authors_path, method: :get, class: "") do |f| %>
+      <%= f.text_field :query, placeholder: "Search by author", value: params[:query], class: "border border-blue-500 rounded p-2" %>
+
+      <%= f.button "Search", value: "submit", class: "p-2" %>
+    <% end %>
+
+<%= form_with(url: authors_path, method: :get, class: "px-3", data: { controller: "filters", "filters-target": "form" } ) do |f| %>
+  <%= f.select :nationality, options_for_select(Author.distinct.order(:nationality).pluck(:nationality), params[:nationality]), { include_blank: "Nationality" }, data: { action: "change->filters#submitForm" } %>
+<% end %>
+
+<%= form_with(url: authors_path, method: :get, class: "pe-3", data: { controller: "filters", "filters-target": "form" } ) do |f| %>
+    <%= f.select :date_of_birth, options_for_select((1960..Date.today.year).to_a, params[:date_of_birth]), { include_blank: "Year" }, data: { action: "change->filters#submitForm" }  %>
+<% end %>
+<%= link_to "Reset", clear_authors_path, class: "text-nowrap text-decoration-none" %>
+
+  </div>
+
+
+
+<div class="table-responsive">
+<table class="table table-hover align-middle">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Number of books</th>
+      <th scope="col">Date of birth</th>
+      <th scope="col">About</th>
+      <th scope="col">Nationality</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @authors.each do |author| %>
+    <tr>
+      <th scope="row"><%= author.id %></th>
+      <td><%= "#{author.first_name} #{author.last_name}" %></td>
+      <td><%= author.books.count %></td>
+      <td><%= author.date_of_birth %></td>
+      <td><%= author.about %></td>
+      <td><%= author.nationality %></td>
+      <td><%= link_to edit_author_path(author), class: "text-warning text-nowrap text-decoration-none" do%>
+      Edit <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      </td>
+      <td>
+  <%= link_to author, class: "text-danger text-nowrap text-decoration-none", method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' } do %>
+    Delete <i class="far fa-trash-alt"></i>
+  <% end %>
+</td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<div class="pagination-container">
+  <%= paginate @authors %>
+</div>
+</div>

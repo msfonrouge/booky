@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="book-filters"
+// Connects to data-controller="filters"
 export default class extends Controller {
 
   static targets = [ "form" ]

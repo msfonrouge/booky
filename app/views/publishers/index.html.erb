@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-between align-items-end">
+<div class="d-flex gap-3">
+<a href="/books" class="title-link"><h1>Books</h1></a>
+<a href="/authors" class="title-link"><h1>Authors</h1></a>
+<a href="/publishers" class="title-link active"><h1>Publishers</h1></a>
+</div>
+ <%= link_to new_publisher_path, class: "text-nowrap text-decoration-none" do%>
+      <i class="fa-solid fa-plus"></i> New publisher
+      <% end %>
+</div>
+
+
+<div class="d-flex my-5 align-items-center">
+    <%= form_with(url: publishers_path, method: :get, class: "") do |f| %>
+      <%= f.text_field :query, placeholder: "Search by publisher", value: params[:query], class: "border border-blue-500 rounded p-2" %>
+
+      <%= f.button "Search", value: "submit", class: "p-2" %>
+    <% end %>
+
+<%= link_to "Reset", clear_publishers_path, class: "text-nowrap text-decoration-none ps-3" %>
+
+  </div>
+
+
+
+<div class="table-responsive">
+<table class="table table-hover align-middle">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publishers.each do |publisher| %>
+    <tr>
+      <th scope="row"><%= publisher.id %></th>
+      <td><%= publisher.name %></td>
+      <td><%= link_to edit_publisher_path(publisher), class: "text-warning text-nowrap text-decoration-none" do%>
+      Edit <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      </td>
+      <td>
+  <%= link_to publisher, class: "text-danger text-nowrap text-decoration-none", method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' } do %>
+    Delete <i class="far fa-trash-alt"></i>
+  <% end %>
+</td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<div class="pagination-container">
+  <%= paginate @publishers %>
+</div>
+</div>
