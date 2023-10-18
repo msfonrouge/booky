@@ -13,7 +13,7 @@
 
   <body><%= render "shared/navbar" %>
 <%= render "shared/flashes" %>
-    <div class="container my-5">
+    <div class="<%= current_page?(root_path) ? 'background-image' : 'container my-5' %>">
     <%= yield %>
     </div>
   </body>
