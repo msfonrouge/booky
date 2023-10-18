@@ -11,19 +11,6 @@ before_action :set_publisher, only: %i[ show edit update destroy ]
     # Retrieve filter and search parameters from the session
     session[:query] = params[:query] if params[:query].present?
 
-    # Filter by birth year
-    if params[:date_of_birth].present?
-      year = params[:date_of_birth].to_i
-      start_date = Date.new(year, 1, 1)
-      end_date = Date.new(year, 12, 31)
-      @publishers = @publishers.where(date_of_birth: start_date..end_date)
-    end
-
-    # Filter by nationality
-     if params[:nationality].present?
-        @publishers = Publisher.where(nationality: params[:nationality]).page(params[:page])
-      end
-
       # Filter by publisher search
     if session[:query].present?
       @publishers = @publishers.where("name ILIKE ?", "%#{session[:query]}%")

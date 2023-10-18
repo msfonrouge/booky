@@ -1,2 +1,10 @@
-<h1>Publishers#show</h1>
-<p>Find me in app/views/publishers/show.html.erb</p>
+<div id="<%= dom_id @publisher %>">
+<h1><%= @publisher.name %></h1>
+<% @publisher.books.each do |book| %>
+    <p><%= book.title %></p>
+<% end %>
+</div>
+<div>
+  <%= link_to "Edit this publisher", edit_publisher_path(@publisher) %> |
+  <%= link_to "Back to publishers", publishers_path %>
+</div>

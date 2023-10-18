@@ -1,2 +1,11 @@
-<h1>Publishers#new</h1>
-<p>Find me in app/views/publishers/new.html.erb</p>
+<div class="mx-auto" style="width: 40%">
+<div class="d-flex justify-content-between align-items-center">
+  <h1>New publisher</h1>
+  <%= link_to "Back to publishers", publishers_path %>
+</div>
+
+<%= render "form", publisher: @publisher %>
+
+<br>
+
+</div>

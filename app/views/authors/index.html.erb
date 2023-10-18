@@ -48,7 +48,7 @@
     <% @authors.each do |author| %>
     <tr>
       <th scope="row"><%= author.id %></th>
-      <td><%= "#{author.first_name} #{author.last_name}" %></td>
+      <td><%= link_to "#{author.first_name} #{author.last_name}", author_path(author), class: "text-nowrap text-decoration-none" %></td>
       <td><%= author.books.count %></td>
       <td><%= author.date_of_birth %></td>
       <td><%= author.about %></td>

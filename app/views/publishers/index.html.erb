@@ -38,10 +38,12 @@
     <% @publishers.each do |publisher| %>
     <tr>
       <th scope="row"><%= publisher.id %></th>
-      <td><%= publisher.name %></td>
+      <td><%= link_to publisher.name, publisher_path(publisher), class: "text-nowrap text-decoration-none" %></td>
       <td><%= publisher.books.count %></td>
-      <td><%= link_to edit_publisher_path(publisher), class: "text-warning text-nowrap text-decoration-none" do%>
+      <%= turbo_frame_tag publisher do %>
+              <td><%= link_to edit_publisher_path(publisher), class: "text-warning text-nowrap text-decoration-none" do%>
       Edit <i class="fas fa-pencil-alt"></i>
+      <% end %>
       <% end %>
       </td>
       <td>

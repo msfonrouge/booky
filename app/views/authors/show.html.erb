@@ -1,2 +1,10 @@
-<h1>Authors#show</h1>
-<p>Find me in app/views/authors/show.html.erb</p>
+<div id="<%= dom_id @author %>">
+<h1><%= "#{@author.first_name} #{@author.last_name}" %></h1>
+<% @author.books.each do |book| %>
+    <p><%= book.title %></p>
+<% end %>
+</div>
+<div>
+  <%= link_to "Edit this author", edit_author_path(@author) %> |
+  <%= link_to "Back to authors", authors_path %>
+</div>
