@@ -83,3 +83,6 @@ gem 'faker'
 
 # Add kaminari
 gem 'kaminari'
+
+# Add 'country_select'
+gem 'country_select'

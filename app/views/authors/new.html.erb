@@ -1,2 +1,11 @@
-<h1>Authors#new</h1>
-<p>Find me in app/views/authors/new.html.erb</p>
+<div class="mx-auto" style="width: 40%">
+<div class="d-flex justify-content-between align-items-center">
+  <h1>New author</h1>
+  <%= link_to "Back to authors", authors_path %>
+</div>
+
+<%= render "form", author: @author %>
+
+<br>
+
+</div>

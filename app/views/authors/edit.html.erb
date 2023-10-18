@@ -1,2 +1,16 @@
-<h1>Authors#edit</h1>
-<p>Find me in app/views/authors/edit.html.erb</p>
+<div class="mx-auto" style="width: 40%">
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Editing author</h1>
+  <div>
+  <%= link_to "Show this author", @author %> |
+  <%= link_to "Back to authors", authors_path %>
+  </div>
+</div>
+
+
+<%= render "form", author: @author %>
+
+<br>
+
+
+</div>

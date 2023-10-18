@@ -1,0 +1,22 @@
+<div class="pt-4">
+  <%= simple_form_for(@author, html: { class: "row" }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :first_name, required: true %>
+      <%= f.input :last_name, required: true %>
+      <%= f.input :date_of_birth, required: true, as: :string, input_html: { data: { controller: "flatpickr" } }  %>
+      <%= f.input :about %>
+      <%= f.input :nationality, as: :country %>
+
+    </div>
+
+    <div class="form-actions d-flex justify-content-between">
+      <%= f.button :submit, class: "btn btn-primary" %>
+      <% if !current_page?('/authors/new') %>
+        <%= button_to "Delete this author", @author, method: :delete, class: "btn btn-danger text-white" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
