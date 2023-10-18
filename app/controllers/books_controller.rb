@@ -25,9 +25,10 @@ class BooksController < ApplicationController
         @books = publisher.books.page(params[:page])
       end
 
-      # Filter by title
-    if session[:query].present?  #session[:query]
-      @books = @books.where("title ILIKE ?", "%#{session[:query]}%")
+      # Filter by title or author search
+    if session[:query].present?
+      sql_subquery = "title ILIKE :query OR authors.first_name ILIKE :query OR authors.last_name ILIKE :query"
+      @books = @books.joins(:author).where(sql_subquery, query: "%#{session[:query]}%")
     else
       session[:query] = nil
     end
