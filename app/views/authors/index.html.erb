@@ -58,7 +58,7 @@
       <% end %>
       </td>
       <td>
-  <%= link_to author, class: "text-danger text-nowrap text-decoration-none", method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' } do %>
+  <%= link_to author, class: "text-danger text-nowrap text-decoration-none", method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure? This will delete all book dependencies.' } do %>
     Delete <i class="far fa-trash-alt"></i>
   <% end %>
 </td>

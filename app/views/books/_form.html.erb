@@ -18,7 +18,7 @@
       <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
   <% if !current_page?('/books/new') %>
-        <%= button_to "Delete this book", @book, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger text-white" %>
+        <%= button_to "Delete this book", @book, method: :delete, class: "btn btn-danger text-white" %>
       <% end %>
     </div>
 </div>
