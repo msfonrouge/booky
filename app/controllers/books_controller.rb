@@ -40,8 +40,14 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = Book.where("title LIKE ?", "%#{params[:query]}%")
+    @books = Book.page(params[:page]).per(24)
+    if params[:query].present?
+      sql_subquery = "title ILIKE :query OR authors.first_name ILIKE :query OR authors.last_name ILIKE :query"
+      @books = @books.joins(:author).where(sql_subquery, query: "%#{params[:query]}%")
+    else
+      params[:query] = nil
   end
+end
 
   # GET /books/1 or /books/1.json
   def show

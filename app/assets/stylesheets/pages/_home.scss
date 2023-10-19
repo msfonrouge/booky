@@ -2,7 +2,7 @@
 
 .background-image {
     background-image: url('/assets/background.jpg');
-    height: 100vh;
+    height: calc(100vh - (82px));
 }
 
 .search {
