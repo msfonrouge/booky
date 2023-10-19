@@ -39,6 +39,10 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def search
+    @books = Book.where("title LIKE ?", "%#{params[:query]}%")
+  end
+
   # GET /books/1 or /books/1.json
   def show
   end

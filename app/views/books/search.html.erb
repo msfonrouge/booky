@@ -1,0 +1,11 @@
+    <div class="d-flex flex-wrap gap-3 ">
+    <% @books.each do |book| %>
+    <div style="width: 200px;">
+      <h5><strong><%= book.title %></strong></h5>
+      <p><%= "#{book.author.first_name} #{book.author.last_name}" %></p>
+    </div>
+  <% end %>
+  </div>
+<div class="pagination-container">
+  <% # paginate @books %>
+</div>

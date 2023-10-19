@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :books  do
     collection do
       get :clear
+      get :search
     end
   end
   devise_for :users
