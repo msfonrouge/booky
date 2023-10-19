@@ -8,8 +8,8 @@
 
 
 
-User.create(email: 'user1@example.com', password: '123456', admin: true)
-User.create(email: 'user2@example.com', password: '123456', admin: false)
+User.create(email: 'admin@example.com', password: '123456', admin: true)
+User.create(email: 'user@example.com', password: '123456', admin: false)
 
 
 70.times do
