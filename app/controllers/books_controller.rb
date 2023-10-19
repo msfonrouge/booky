@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
   include Pundit
   before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:show, :search]
 
   # GET /books or /books.json
   def index
     @books = Book.page(params[:page])
+    authorize @books
 
     # Initialize session variables if they are not set
     session[:query] ||= nil
@@ -33,7 +35,6 @@ class BooksController < ApplicationController
     else
       session[:query] = nil
     end
-    authorize @books
       rescue Pundit::NotAuthorizedError
       flash[:alert] = "You are not authorized to perform this action."
       redirect_to root_path

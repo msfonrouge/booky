@@ -4,9 +4,9 @@ class BookPolicy < ApplicationPolicy
     # def resolve
     #   scope.all
     # end
-    def index
-      user.admin?
-      flash[:alert] = 'You are not authorized to perform this action.'
-    end
+  end
+
+  def index?
+    user.admin?
   end
 end
