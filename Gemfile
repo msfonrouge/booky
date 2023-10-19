@@ -89,3 +89,6 @@ gem 'country_select'
 
 # Add 'acts_as_favoritor'
 gem 'acts_as_favoritor'
+
+# Add pundit
+gem 'pundit'

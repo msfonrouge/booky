@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  include Pundit
   before_action :set_book, only: %i[ show edit update destroy ]
 
   # GET /books or /books.json
@@ -32,6 +33,11 @@ class BooksController < ApplicationController
     else
       session[:query] = nil
     end
+    authorize @books
+      rescue Pundit::NotAuthorizedError
+      # Handle the unauthorized access here
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to root_path # or another appropriate redirection
   end
 
   def clear
@@ -49,6 +55,8 @@ class BooksController < ApplicationController
   end
 end
 
+# Favorites, create controller?
+
 def favorites
     @user = current_user
     @favorite_books = @user.all_favorites.page(params[:page])
@@ -59,6 +67,13 @@ end
     current_user.favorite(@book)
     flash[:notice] = 'Book added to favorites successfully'
     redirect_to book_path(@book)
+  end
+
+  def remove_from_favorites
+    @book = Book.find(params[:id])
+    current_user.unfavorite(@book)
+    flash[:notice] = 'Book removed from favorites successfully'
+    redirect_to favorites_books_path
   end
 
   # GET /books/1 or /books/1.json
