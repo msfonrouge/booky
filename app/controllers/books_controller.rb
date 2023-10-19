@@ -51,7 +51,7 @@ end
 
 def favorites
     @user = current_user
-    @favorite_books = @user.all_favorites
+    @favorite_books = @user.all_favorites.page(params[:page])
 end
 
   def add_to_favorites

@@ -1,3 +1,11 @@
-<% @user.all_favorites.each do |favorite| %>
-  <%= favorite.favoritable.title %>
-<% end %>
+    <div class="d-flex flex-wrap gap-3 ">
+    <% @user.all_favorites.each do |favorite| %>
+    <div class="text-center" style="width: 200px;">
+    <i class="fa-solid fa-book-open fs-1 text-center pb-3"></i>
+      <h5><strong><%= link_to favorite.favoritable.title, book_path(favorite.favoritable), class: "text-decoration-none" %></strong></h5>
+    </div>
+  <% end %>
+  </div>
+<div class="pagination-container">
+  <% paginate @favorite_books %>
+</div>
