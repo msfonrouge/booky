@@ -41,6 +41,8 @@
 
 </div>
 <div class="mt-5">
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <% if current_user.admin? %>
+    <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <% end %>
   <%= link_to "Back", :back %>
 </div>

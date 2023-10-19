@@ -35,9 +35,8 @@ class BooksController < ApplicationController
     end
     authorize @books
       rescue Pundit::NotAuthorizedError
-      # Handle the unauthorized access here
       flash[:alert] = "You are not authorized to perform this action."
-      redirect_to root_path # or another appropriate redirection
+      redirect_to root_path
   end
 
   def clear
