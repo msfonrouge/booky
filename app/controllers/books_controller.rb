@@ -58,13 +58,12 @@ end
     @book = Book.find(params[:id])
     current_user.favorite(@book)
     flash[:notice] = 'Book added to favorites successfully'
-    redirect_to book_path(@book) # Redirect back to the book's show page
+    redirect_to book_path(@book)
   end
 
   # GET /books/1 or /books/1.json
   def show
     @user = current_user
-    #@user.favorited?(@book)  ? @user.unfavorite(@book) : @user.favorite(@book)
   end
 
   # GET /books/new

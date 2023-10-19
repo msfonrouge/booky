@@ -16,9 +16,9 @@
 
     <div class="form-actions d-flex justify-content-between">
       <%= f.button :submit, class: "btn btn-primary" %>
-      <% if !current_page?('/books/new') %>
-        <%= button_to "Delete this book", @book, method: :delete, class: "btn btn-danger text-white" %>
+  <% end %>
+  <% if !current_page?('/books/new') %>
+        <%= button_to "Delete this book", @book, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger text-white" %>
       <% end %>
     </div>
-  <% end %>
 </div>

@@ -10,9 +10,9 @@
 
     <div class="form-actions d-flex justify-content-between">
       <%= f.button :submit, class: "btn btn-primary" %>
-      <% if !current_page?('/publishers/new') %>
+  <% end %>
+  <% if !current_page?('/publishers/new') %>
         <%= button_to "Delete this publisher", @publisher, method: :delete, class: "btn btn-danger text-white" %>
       <% end %>
     </div>
-  <% end %>
 </div>

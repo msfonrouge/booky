@@ -14,9 +14,9 @@
 
     <div class="form-actions d-flex justify-content-between">
       <%= f.button :submit, class: "btn btn-primary" %>
-      <% if !current_page?('/authors/new') %>
+  <% end %>
+  <% if !current_page?('/authors/new') %>
         <%= button_to "Delete this author", @author, method: :delete, class: "btn btn-danger text-white" %>
       <% end %>
     </div>
-  <% end %>
 </div>
