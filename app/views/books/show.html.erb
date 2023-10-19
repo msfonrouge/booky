@@ -1,7 +1,15 @@
 <div id="<%= dom_id @book %>">
+<div class="d-flex align-content-center gap-5">
+  <div>
+    <i class="fa-solid fa-book-open text-center py-5" style="font-size: 10em"></i>
+</div>
+<div>
   <p>
-    <strong>Title:</strong>
-    <%= @book.title %>
+    <h1><%= @book.title %></h1>
+  </p>
+
+    <p>
+    <%= "#{@book.author.first_name} #{@book.author.last_name}" %>
   </p>
 
   <p>
@@ -25,15 +33,13 @@
   </p>
 
   <p>
-    <strong>Author:</strong>
-    <%= "#{@book.author.first_name} #{@book.author.last_name}" %>
-  </p>
-  <p>
     <strong>Publisher:</strong>
     <%= @book.publisher.name %>
   </p>
 </div>
-<div>
+
+</div>
+<div class="mt-5">
   <%= link_to "Edit this book", edit_book_path(@book) %> |
   <%= link_to "Back to books", books_path %>
 </div>
