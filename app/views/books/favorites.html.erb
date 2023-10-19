@@ -1,0 +1,3 @@
+<% @user.all_favorites.each do |favorite| %>
+  <%= favorite.favoritable.title %>
+<% end %>

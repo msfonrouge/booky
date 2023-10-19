@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     collection do
       get :clear
       get :search
+      get :favorites
     end
+    post 'add_to_favorites', on: :member
   end
   devise_for :users
   root to: "pages#home"

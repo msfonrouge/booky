@@ -37,6 +37,7 @@
     <%= @book.publisher.name %>
   </p>
 </div>
+<%= link_to 'Add to Favorites', add_to_favorites_book_path(@book), data: { turbo_method: :post } %>
 
 </div>
 <div class="mt-5">
